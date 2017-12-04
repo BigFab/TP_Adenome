@@ -1,0 +1,55 @@
+---
+title: "Projet Adenome"
+author: "Zineb Bennis & Fabrice Sougey"
+date: "December 4, 2017"
+output: pdf_document
+---
+
+```{r setup,echo=FALSE}
+#
+# Cleanup & Data Preparation
+#
+library(xlsx)
+setwd("/user/2/.base/sougeyf/home/TP_ML/TP_Adenome")
+vapor<-read.xlsx("datasets/VAPOR.xlsx",sheetIndex=1,startRow=2,header=2)
+vapor<-vapor[,-1]
+
+#Suppression 1ere colonne vide
+rtupb<-read.xlsx("datasets/RTUPB-VBPPS.xlsx",sheetIndex=1,startRow=2,header=2)
+
+# Cast des variables catégoriques
+vapor$Comorbidité.CardioVx<-as(vapor$Comorbidité.CardioVx,"logical")
+vapor$poteur.de.sonde<-as(vapor$poteur.de.sonde ,"logical")
+vapor$Evenement.H.D<-as(vapor$Evenement.H.D,"logical")
+vapor$Transfusion.PerO<-as(vapor$Transfusion.PerO,"logical")
+vapor$caillotage<-as(vapor$caillotage,"logical")
+vapor$reprise.au.bloc<-as(vapor$reprise.au.bloc,"logical")
+
+# 20 premières colonnes du dataset -> pré-opératoire
+vapor_pre<-vapor[,1:20]
+# Suppression colonne 14 (uniquement des 0s)
+vapor_pre<-vapor_pre[,-14]
+
+# Dernières colonnes du dataset -> post-opératoire
+vapor_post<-vapor[,21:41]
+
+#
+# Analyse Exploratoire de Vapor
+#
+# Boxplots des variables numériques
+par(mfrow = c(1,1))
+for (i in 1:ncol(vapor_pre)) {
+  classx= class(vapor_pre[,i])
+  #x11(display="")
+  if (classx == "numeric")
+    boxplot(vapor_pre[,i])
+  else
+    barplot(table(vapor_pre[,i]))
+  title(colnames(vapor_pre)[i])
+}
+#
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.
