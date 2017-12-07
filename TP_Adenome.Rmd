@@ -2,15 +2,19 @@
 title: "Projet Adenome"
 author: "Zineb Bennis & Fabrice Sougey"
 date: "December 4, 2017"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup,echo=FALSE}
+dyn.load('/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/jre/lib/server/libjvm.dylib')
 #
 # Cleanup & Data Preparation
 #
 library(xlsx)
-setwd("/user/2/.base/sougeyf/home/TP_ML/TP_Adenome")
+setwd("/Users/fabricesougey/Desktop/TP_Machine_Learning/TP_Adenome")
 vapor<-read.xlsx("datasets/VAPOR.xlsx",sheetIndex=1,startRow=2,header=2)
 vapor<-vapor[,-1]
 
