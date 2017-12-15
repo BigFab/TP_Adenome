@@ -3,39 +3,49 @@ title: "Projet Adenome"
 author: "Zineb Bennis & Fabrice Sougey"
 date: "December 4, 2017"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup,echo=FALSE}
-dyn.load('/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/jre/lib/server/libjvm.dylib')
+setwd("/home/sougeyf/TP_Adenome")
+```
+
 #
 # Cleanup & Data Preparation
 #
-library(xlsx)
-setwd("/Users/fabricesougey/Desktop/TP_Machine_Learning/TP_Adenome")
-vapor<-read.xlsx("datasets/VAPOR.xlsx",sheetIndex=1,startRow=2,header=2)
-vapor<-vapor[,-1]
 
-#Suppression 1ere colonne vide
-rtupb<-read.xlsx("datasets/RTUPB-VBPPS.xlsx",sheetIndex=1,startRow=2,header=2)
+```{r cleanup,echo=FALSE}
+# Les fichiers ont été transformés et nettoyés en CSV avant import dans R
+
+vapor<-read.csv(file = "datasets/VAPOR.csv", sep = ",")
+
+# Cast des variables booléennes
+vapor$Comorbidite<-as.logical(vapor$Comorbidite)
+vapor$Porteur_Sonde<-as.logical(vapor$Porteur_Sonde)
+vapor$Evenement<-as.logical(vapor$Evenement)
+vapor$Transfusion<-as.logical(vapor$Transfusion)
+vapor$Caillotage<-as.logical(vapor$Caillotage)
+vapor$Reprise_Bloc<-as.logical(vapor$Reprise_Bloc)
 
 # Cast des variables catégoriques
-vapor$Comorbidité.CardioVx<-as(vapor$Comorbidité.CardioVx,"logical")
-vapor$poteur.de.sonde<-as(vapor$poteur.de.sonde ,"logical")
-vapor$Evenement.H.D<-as(vapor$Evenement.H.D,"logical")
-vapor$Transfusion.PerO<-as(vapor$Transfusion.PerO,"logical")
-vapor$caillotage<-as(vapor$caillotage,"logical")
-vapor$reprise.au.bloc<-as(vapor$reprise.au.bloc,"logical")
+vapor$Indication<-as.factor(vapor$Indication)
+vapor$Anesthesie<-as.factor(vapor$Anesthesie)
+vapor$Evenement<-as.factor(vapor$Evenement)
+vapor$Technique<-as.factor(vapor$Technique)
+
+# Cast des variables catégoriques ordonnées
+vapor$QoL<-as.factor(vapor$QoL)
 
 # 20 premières colonnes du dataset -> pré-opératoire
 vapor_pre<-vapor[,1:20]
-# Suppression colonne 14 (uniquement des 0s)
-vapor_pre<-vapor_pre[,-14]
 
 # Dernières colonnes du dataset -> post-opératoire
 vapor_post<-vapor[,21:41]
+
+
+```
 
 #
 # Analyse Exploratoire de Vapor
