@@ -36,7 +36,7 @@ vapor$Evenement<-as.factor(vapor$Evenement)
 vapor$Technique<-as.factor(vapor$Technique)
 
 # Cast des variables catégoriques ordonnées
-vapor$QoL<-as.factor(vapor$QoL)
+vapor$QoL<-as.ordered(vapor$QoL)
 
 # 20 premières colonnes du dataset -> pré-opératoire
 vapor_pre<-vapor[,1:20]
@@ -44,18 +44,14 @@ vapor_pre<-vapor[,1:20]
 # Dernières colonnes du dataset -> post-opératoire
 vapor_post<-vapor[,21:41]
 
-
-```
-
 #
 # Analyse Exploratoire de Vapor
 #
-# Boxplots des variables numériques
+# Boxplots des variables numériques et barplots des variables catégoriques
 par(mfrow = c(1,1))
 for (i in 1:ncol(vapor_pre)) {
-  classx= class(vapor_pre[,i])
   #x11(display="")
-  if (classx == "numeric")
+  if (is.numeric(vapor_pre[,i]) || is.integer(vapor_pre[,i]))
     boxplot(vapor_pre[,i])
   else
     barplot(table(vapor_pre[,i]))
@@ -63,7 +59,3 @@ for (i in 1:ncol(vapor_pre)) {
 }
 #
 ```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.
