@@ -10,6 +10,8 @@ output:
 
 ```{r setup,echo=FALSE}
 setwd("/home/sougeyf/TP_Adenome")
+library(ggplot2)
+theme_set(theme_classic())
 ```
 
 #
@@ -17,6 +19,7 @@ setwd("/home/sougeyf/TP_Adenome")
 #
 
 ```{r cleanup,echo=FALSE}
+
 # Les fichiers ont été transformés et nettoyés en CSV avant import dans R
 
 vapor<-read.csv(file = "datasets/VAPOR.csv", sep = ",")
@@ -37,6 +40,13 @@ vapor$Technique<-as.factor(vapor$Technique)
 
 # Cast des variables catégoriques ordonnées
 vapor$QoL<-as.ordered(vapor$QoL)
+vapor$X1M_QoL<-as.ordered(vapor$X1M_QoL)
+vapor$X3M_QoL<-as.ordered(vapor$X3M_QoL)
+vapor$X6M_QoL<-as.ordered(vapor$X6M_QoL)
+vapor$X9M_QoL<-as.ordered(vapor$X9M_QoL)
+vapor$X12M_QoL<-as.ordered(vapor$X12M_QoL)
+vapor$X15M_QoL<-as.ordered(vapor$X15M_QoL)
+vapor$X18M_QoL<-as.ordered(vapor$X18M_QoL)
 
 # 20 premières colonnes du dataset -> pré-opératoire
 vapor_pre<-vapor[,1:20]
@@ -44,18 +54,58 @@ vapor_pre<-vapor[,1:20]
 # Dernières colonnes du dataset -> post-opératoire
 vapor_post<-vapor[,21:41]
 
+adenome_boxplot <- function(df, feature_index){
+  title = "Boxplot"
+  x_axis = colnames(df)[feature_index]
+  caption = "Source : ADENOME-PROS"
+
+  g <- ggplot(df, aes("", df[,feature_index]))
+  g <- g + geom_boxplot(varwidth=T, fill="plum")
+  g <- g + labs(title=title, 
+         subtitle=x_axis,
+         caption=caption,
+         x=x_axis)
+  print(g)
+}
+
+adenome_scatterplot <- function(df, feature_index_i, feature_index_j) {
+  title = "Scatterplot"
+  x_axis = colnames(df)[feature_index_i]
+  y_axis = colnames(df)[feature_index_j]
+  subtitle = paste(x_axis, " Vs. ", y_axis)
+  caption = "Source : ADENOME-PROS"
+  g <- ggplot(df, aes(x=df[,feature_index_i], y=df[,feature_index_j]))
+  g <- g + geom_point()
+  g <- g + labs(title=title,subtitle=subtitle,y=y_axis,x=x_axis,caption=caption)
+  print(g)
+}
+
+adenome_barplot <- function(df, feature_index) {
+  title = "Barplot"
+  caption = "Source : ADENOME-PROS"
+  x_axis = colnames(df)[feature_index]
+  g <- ggplot(df, aes(df[,feature_index]))
+  g <- g + geom_bar(width = 0.5)
+  g <- g + labs(title=title, 
+         subtitle=x_axis,
+         caption=caption,
+         x=x_axis,
+         y="")
+  print(g)
+}
+
 #
 # Analyse Exploratoire de Vapor
 #
 # Boxplots des variables numériques et barplots des variables catégoriques
-par(mfrow = c(1,1))
+par(mfrow = c(2,1))
 for (i in 1:ncol(vapor_pre)) {
   #x11(display="")
-  if (is.numeric(vapor_pre[,i]) || is.integer(vapor_pre[,i]))
-    boxplot(vapor_pre[,i])
+  if (is.numeric(vapor_pre[,i]) || is.integer(vapor_pre[,i])) {
+  adenome_boxplot(vapor_pre,i)
+  }
   else
-    barplot(table(vapor_pre[,i]))
-  title(colnames(vapor_pre)[i])
+    adenome_barplot(vapor_pre,i)
 }
 #
 ```
