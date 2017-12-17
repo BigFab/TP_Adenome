@@ -1,5 +1,6 @@
 *.xlsx
 datasets/
+TP_Adenome_files/
 *.pdf
 *.html
 .Rhistory
