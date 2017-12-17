@@ -8,14 +8,18 @@ output:
   pdf_document: default
 ---
 
+<<<<<<< HEAD
 ```{r setup,echo=FALSE}
 setwd("/home/sougeyf/TP_Adenome")
 library(ggplot2)
 theme_set(theme_classic())
 ```
+=======
+>>>>>>> 1e4bf81f18f5a6b8bbe7bd7c811ee36c21f82a5c
 
 #
 # Cleanup & Data Preparation
+
 #
 
 ```{r cleanup,echo=FALSE}
@@ -23,11 +27,18 @@ theme_set(theme_classic())
 # Les fichiers ont Ã©tÃ© transformÃ©s et nettoyÃ©s en CSV avant import dans R
 
 vapor<-read.csv(file = "datasets/VAPOR.csv", sep = ",")
+rtupb<-read.csv(file = "datasets/RTUPB-VBPPS.csv", sep = ",")
 
+#On crée  une variable vapor_pre_cor pour créer une matrice de corrélation ne comportant que des données numériques
+vapor_pre_cor=vapor[1:20]
+vapor_pre_cor=subset(vapor_pre_cor,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique))
+rtupb_pre_cor=rtupb[1:20]
+rtupb_pre_cor=subset(rtupb_pre_cor,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique))
+
+#################################VAPOR###############################################
 # Cast des variables boolÃ©ennes
 vapor$Comorbidite<-as.logical(vapor$Comorbidite)
 vapor$Porteur_Sonde<-as.logical(vapor$Porteur_Sonde)
-vapor$Evenement<-as.logical(vapor$Evenement)
 vapor$Transfusion<-as.logical(vapor$Transfusion)
 vapor$Caillotage<-as.logical(vapor$Caillotage)
 vapor$Reprise_Bloc<-as.logical(vapor$Reprise_Bloc)
@@ -38,6 +49,7 @@ vapor$Anesthesie<-as.factor(vapor$Anesthesie)
 vapor$Evenement<-as.factor(vapor$Evenement)
 vapor$Technique<-as.factor(vapor$Technique)
 
+<<<<<<< HEAD
 # Cast des variables catÃ©goriques ordonnÃ©es
 vapor$QoL<-as.ordered(vapor$QoL)
 vapor$X1M_QoL<-as.ordered(vapor$X1M_QoL)
@@ -48,12 +60,22 @@ vapor$X12M_QoL<-as.ordered(vapor$X12M_QoL)
 vapor$X15M_QoL<-as.ordered(vapor$X15M_QoL)
 vapor$X18M_QoL<-as.ordered(vapor$X18M_QoL)
 
+=======
+# Cast des variables catÃ©goriques 
+vapor$QoL<-as.factor(vapor$QoL)
+vapor$X1M_QoL<-as.factor(vapor$X1M_QoL)
+vapor$X3M_QoL<-as.factor(vapor$X3M_QoL)
+vapor$X6M_QoL<-as.factor(vapor$X6M_QoL)
+vapor$X9M_QoL<-as.factor(vapor$X9M_QoL)
+vapor$X18M_QoL<-as.factor(vapor$X18M_QoL)
+>>>>>>> 1e4bf81f18f5a6b8bbe7bd7c811ee36c21f82a5c
 # 20 premiÃ¨res colonnes du dataset -> prÃ©-opÃ©ratoire
 vapor_pre<-vapor[,1:20]
 
 # DerniÃ¨res colonnes du dataset -> post-opÃ©ratoire
 vapor_post<-vapor[,21:41]
 
+<<<<<<< HEAD
 adenome_boxplot <- function(df, feature_index){
   title = "Boxplot"
   x_axis = colnames(df)[feature_index]
@@ -94,6 +116,41 @@ adenome_barplot <- function(df, feature_index) {
   print(g)
 }
 
+=======
+
+#######################################RTUPB#########################################
+
+# Cast des variables boolÃ©ennes
+rtupb$Comorbidite<-as.logical(rtupb$Comorbidite)
+rtupb$Caillotage<-as.logical(rtupb$Caillotage)
+rtupb$Porteur_Sonde<-as.logical(rtupb$Porteur_Sonde)
+rtupb$Reprise_Bloc<-as.logical(rtupb$Reprise_Bloc)
+rtupb$Transfusion<-as.logical(rtupb$Transfusion)
+# Cast des variables catÃ©goriques
+rtupb$Indication<-as.factor(rtupb$Indication)
+rtupb$Anesthesie<-as.factor(rtupb$Anesthesie)
+rtupb$Evenement<-as.factor(rtupb$Evenement)
+rtupb$Technique<-as.factor(rtupb$Technique)
+
+# Cast des variables catÃ©goriques 
+rtupb$QoL<-as.factor(rtupb$QoL)
+rtupb$X1M_QoL<-as.factor(rtupb$X1M_QoL)
+rtupb$X3M_QoL<-as.factor(rtupb$X3M_QoL)
+rtupb$X6M_QoL<-as.factor(rtupb$X6M_QoL)
+rtupb$X9M_QoL<-as.factor(rtupb$X9M_QoL)
+rtupb$X18M_QoL<-as.factor(rtupb$X18M_QoL)
+# 20 premiÃ¨res colonnes du dataset -> prÃ©-opÃ©ratoire
+rtupb_pre<-rtupb[,1:20]
+
+# DerniÃ¨res colonnes du dataset -> post-opÃ©ratoire
+rtupb_post<-rtupb[,21:41]
+
+```
+
+##Analyse des données Pré-opératoire VAPOR.
+
+```{r vapor_pre,echo=FALSE}
+>>>>>>> 1e4bf81f18f5a6b8bbe7bd7c811ee36c21f82a5c
 #
 # Analyse Exploratoire de Vapor
 #
@@ -105,7 +162,89 @@ for (i in 1:ncol(vapor_pre)) {
   adenome_boxplot(vapor_pre,i)
   }
   else
+<<<<<<< HEAD
     adenome_barplot(vapor_pre,i)
+=======
+  barplot(table(vapor_pre[,i]))
+  title(colnames(vapor_pre)[i])
+>>>>>>> 1e4bf81f18f5a6b8bbe7bd7c811ee36c21f82a5c
 }
-#
 ```
+
+##Analyse des données Post-opératoire VAPOR.
+
+
+```{r vapor_post,echo=FALSE}
+
+par(mfrow = c(1,1))
+for (i in 1:ncol(vapor_post)) {
+  #x11(display="")
+  if (is.numeric(vapor_post[,i]) || is.integer(vapor_post[,i]))
+    boxplot(vapor_post[,i])
+  else
+    barplot(table(vapor_post[,i]))
+  title(colnames(vapor_post)[i])
+}
+```
+
+##Analyse des données Pré-opératoire RTUPB.
+```{r rtupb_pre,echo=FALSE}
+
+# Analyse Exploratoire de RTUPB
+#
+# Boxplots des variables numÃ©riques et barplots des variables catÃ©goriques
+par(mfrow = c(1,1))
+for (i in 1:ncol(rtupb_pre)) {
+  #x11(display="")
+  if (is.numeric(rtupb_pre[,i]) || is.integer(rtupb_pre[,i]))
+    boxplot(rtupb_pre[,i])
+  else
+  barplot(table(rtupb_pre[,i]))
+  title(colnames(rtupb_pre)[i])
+}
+
+
+```
+
+##Analyse des données Post-opératoire RTUPB.
+
+```{r rtupb_post,echo=FALSE}
+
+par(mfrow = c(1,1))
+for (i in 1:ncol(rtupb_post)) {
+  #x11(display="")
+  if (is.numeric(rtupb_post[,i]) || is.integer(rtupb_post[,i]))
+    boxplot(rtupb_post[,i])
+  else
+    barplot(table(rtupb_post[,i]))
+  title(colnames(rtupb_post)[i])
+}
+
+#On crée une matrice de corrélation pour voir les liens entre les variables 
+Matrice_cor_Vapor=cor(vapor_pre_cor, method = c("pearson"))
+corrplot(Matrice_cor_vapor, type="upper",tl.col="black", tl.srt=45)
+Matrice_cor_rtupb=cor(rtupb_pre_cor, method = c("pearson"))
+corrplot(Matrice_cor_rtupb, type="upper",tl.col="black", tl.srt=45)
+```
+
+```{r PAM,echo=FALSE}
+#On enlève les variables qui ne rapportent rien càd qui ot la même valeur pour tout les individus et on redivise en post et pré opératoires
+
+vapor_small=subset(vapor,select=-c(Technique))
+vapor_small_pre=vapor_small[1:19]
+vapor_small_post=vapor_small[20:40]
+rtupb_small=subset(rtupb,select=-c(Evenement,Reprise_Bloc,Transfusion))
+rtupb_small_pre=rtupb_small[1:17]
+rtupb_small_post=rtupb_small[17:38]
+
+#On fait CAH ensuite PAM afi de déterminer les profils types: 
+resu_cah_vapor=hclust(daisy(vapor_small_pre),method = "ward.D")
+plot(resu_cah_vapor)
+resu_pam_vapor=pam(daisy(vapor_small_pre),14)
+plot(resu_pam_vapor)
+
+resu_cah_rtupb=hclust(daisy(rtupb_small_pre),method = "ward.D")
+plot(resu_cah_rtupb)
+resu_pam_rtupb=pam(daisy(rtupb_small_pre),26)
+plot(resu_pam_rtupb)
+````
