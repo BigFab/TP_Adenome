@@ -3,15 +3,16 @@ title: "Projet Adenome"
 author: "Zineb Bennis & Fabrice Sougey"
 date: "December 4, 2017"
 output:
+  word_document: default
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ```{r setup,echo=FALSE}
-setwd("/home/sougeyf/TP_Adenome")
 library(ggplot2)
 library(corrplot)
+library(cluster)
 theme_set(theme_classic())
 ```
 
@@ -19,8 +20,7 @@ theme_set(theme_classic())
 # Plot functions
 #
 ```{r functions,echo=FALSE}
-adenome_boxplot <- function(df, feature_index){
-  title = "Boxplot"
+adenome_boxplot <- function(df, feature_index, title){
   x_axis = colnames(df)[feature_index]
   caption = "Source : ADENOME-PROS"
 
@@ -29,24 +29,23 @@ adenome_boxplot <- function(df, feature_index){
   g <- g + labs(title=title, 
          subtitle=x_axis,
          caption=caption,
-         x=x_axis)
+         x=x_axis,
+         y="")
   print(g)
 }
 
-adenome_scatterplot <- function(df, feature_index_i, feature_index_j) {
-  title = "Scatterplot"
-  x_axis = colnames(df)[feature_index_i]
-  y_axis = colnames(df)[feature_index_j]
-  subtitle = paste(x_axis, " Vs. ", y_axis)
+adenome_scatterplot <- function(df, feature_1, feature_2, f1, f2) {
+  x_axis = f1
+  y_axis = f2
+  title = paste(x_axis, " Vs. ", y_axis)
   caption = "Source : ADENOME-PROS"
-  g <- ggplot(df, aes(x=df[,feature_index_i], y=df[,feature_index_j]))
+  g <- ggplot(df, aes(x=feature_1, y=feature_2))
   g <- g + geom_point()
-  g <- g + labs(title=title,subtitle=subtitle,y=y_axis,x=x_axis,caption=caption)
+  g <- g + labs(title=title,y=y_axis,x=x_axis,caption=caption)
   print(g)
 }
 
-adenome_barplot <- function(df, feature_index) {
-  title = "Barplot"
+adenome_barplot <- function(df, feature_index, title) {
   caption = "Source : ADENOME-PROS"
   x_axis = colnames(df)[feature_index]
   g <- ggplot(df, aes(df[,feature_index]))
@@ -71,10 +70,12 @@ vapor<-read.csv(file = "datasets/VAPOR.csv", sep = ",")
 rtupb<-read.csv(file = "datasets/RTUPB-VBPPS.csv", sep = ",")
 
 # On cree  une variable vapor_pre_cor pour creer une matrice de correlation ne comportant que des donnees numeriques
-vapor_pre_cor=vapor[1:20]
-vapor_pre_cor=subset(vapor_pre_cor,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique))
-rtupb_pre_cor=rtupb[1:20]
-rtupb_pre_cor=subset(rtupb_pre_cor,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique))
+vapor_cor=subset(vapor,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique,Residu_post_mictionnel,QoL,X1M_QoL,X3M_QoL,X6M_QoL,X9M_QoL,X12M_QoL,X15M_QoL,X18M_QoL))
+vapor_pre_cor=vapor_cor[1:9]
+vapor_post_cor=vapor_cor[10:23]
+rtupb_cor=subset(rtupb,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique,Residu_post_mictionnel,Volume_Reseque,QoL,X1M_QoL,X3M_QoL,X6M_QoL,X9M_QoL,X12M_QoL,X15M_QoL,X18M_QoL))
+rtupb_pre_cor=rtupb_cor[1:8]
+rtupb_post_cor=vapor_cor[9:22]
 
 ################################# VAPOR ###############################################
 # Cast des variables booléennes
@@ -143,14 +144,14 @@ rtupb_post<-rtupb[,21:41]
 # Analyse Exploratoire de Vapor
 #
 # Boxplots des variables numériques et barplots des variables catégoriques
-par(mfrow = c(2,1))
+par(mfrow=c(1,2))
 for (i in 1:ncol(vapor_pre)) {
   #x11(display="")
   if (is.numeric(vapor_pre[,i]) || is.integer(vapor_pre[,i])) {
-    adenome_boxplot(vapor_pre,i)
+    adenome_boxplot(vapor_pre,i,"VAPOR Pre-operatoire")
   }
   else
-    adenome_barplot(vapor_pre,i)
+    adenome_barplot(vapor_pre,i,"VAPOR Pre-operatoire")
 }
 ```
 
@@ -161,9 +162,9 @@ par(mfrow = c(1,1))
 for (i in 1:ncol(vapor_post)) {
   #x11(display="")
   if (is.numeric(vapor_post[,i]) || is.integer(vapor_post[,i]))
-    adenome_boxplot(vapor_post,i)
+    adenome_boxplot(vapor_post,i,"VAPOR Post-operatoire")
   else
-    adenome_barplot(vapor_post,i)
+    adenome_barplot(vapor_post,i,"VAPOR Post-operatoire")
 }
 ```
 
@@ -177,9 +178,9 @@ par(mfrow = c(1,1))
 for (i in 1:ncol(rtupb_pre)) {
   #x11(display="")
   if (is.numeric(rtupb_pre[,i]) || is.integer(rtupb_pre[,i]))
-    adenome_boxplot(rtupb_pre,i)
+    adenome_boxplot(rtupb_pre,i,"RTUPB-VPPBS Pre-operatoire")
   else
-    adenome_barplot(rtupb_pre,i)
+    adenome_barplot(rtupb_pre,i,"RTUPB-VPPBS Pre-operatoire")
 }
 ```
 
@@ -190,16 +191,55 @@ par(mfrow = c(1,1))
 for (i in 1:ncol(rtupb_post)) {
   #x11(display="")
   if (is.numeric(rtupb_post[,i]) || is.integer(rtupb_post[,i]))
-    adenome_boxplot(rtupb_post,i)
+    adenome_boxplot(rtupb_post,i,"RTUPB-VPPBS Post-operatoire")
   else
-    adenome_barplot(rtupb_post,i)
+    adenome_barplot(rtupb_post,i,"RTUPB-VPPBS Post-operatoire")
 }
+```
 
+```{r Correlation Vapor PRE,echo=FALSE}
 # On cree une matrice de correlation pour voir les liens entre les variables 
 Matrice_cor_vapor=cor(vapor_pre_cor, method = c("pearson"))
-corrplot(Matrice_cor_vapor, type="upper",tl.col="black", tl.srt=45)
+corrplot(Matrice_cor_vapor, type="upper",tl.col="black", tl.srt=45,title = "Matrice de corrélation Vapor pré-opératoire",method="square")
+```
+
+Pour la technique VAPOR, en pré-opératoire, nous notons une correlation entre le "Volume Résequé" et le "Volume prostatique" ainsi qu'une correlation inverse entre "QMax"" et "IPSS". Plus la miction est bonne, plus la gêne est faible.
+Dans une moindre mesure, nous notons une correlation entre "Volume prostatique" et les variables suivantes :
+- Temps OP
+- Delai Ablation
+Nous notons enfin une correlation entre "Duree Traitement Medical" et "Delai Ablation".
+
+Cette correlation peut être confirmée par les Scatterplots ci-dessous.
+
+```{r Scatterplots Vapor PRE,echo=FALSE}
+adenome_scatterplot(vapor_pre,vapor_pre$Volume_Prostatique,vapor_pre$Volume_Reseque,"Volume_Prostatique","Volume_Reseque")
+adenome_scatterplot(vapor_pre,vapor_pre$Qmax,vapor_pre$IPSS,"Qmax","IPSS")
+adenome_scatterplot(vapor_pre,vapor_pre$Volume_Prostatique,vapor_pre$Tmps_OP,"Volume_Prostatique","Tmps_OP")
+adenome_scatterplot(vapor_pre,vapor_pre$Delai_ablation,vapor_pre$Volume_Prostatique,"Delai_ablation","Volume_Prostatique")
+adenome_scatterplot(vapor_pre,vapor_pre$Duree_Traitement_Medical,vapor_pre$Delai_ablation,"Duree_Traitement_Medical","Delai_Ablation")
+```
+
+```{r Correlation RTUPB Pre,echo=FALSE}
 Matrice_cor_rtupb=cor(rtupb_pre_cor, method = c("pearson"))
 corrplot(Matrice_cor_rtupb, type="upper",tl.col="black", tl.srt=45)
+```
+
+Pour RTUPB-Pre, nous notons une correlation entre IPSS et Age. Plus le patient est agé, plus il est gêné.
+Nous notons également deux corrélations inverses avec Qmax :
+- Age
+- IPSS
+Plus la miction est de bonne qualité, moins le patient est gêné. Plus le patient est agé, moins la miction est de bonne qualité.
+
+Les scatterplots dessous apportent une vue graphique de ces observations.
+
+```{r Scatterplots RTUPB Pre,echo=FALSE}
+adenome_scatterplot(rtupb_pre,rtupb_pre$Age,rtupb_pre$IPSS,"Age","IPSS")
+adenome_scatterplot(rtupb_pre,rtupb_pre$Age,rtupb_pre$Qmax,"Age","Qmax")
+adenome_scatterplot(rtupb_pre,rtupb_pre$Qmax,rtupb_pre$IPSS,"Qmax","IPSS")
+```
+
+```{r Plot Vapor Post Correlation,echo=FALSE}
+plot(vapor_post_cor)
 ```
 
 ```{r PAM,echo=FALSE}
