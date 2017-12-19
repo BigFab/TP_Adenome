@@ -47,17 +47,25 @@ adenome_scatterplot <- function(df, feature_1, feature_2, f1, f2) {
 
 adenome_barplot <- function(df, feature_index, title) {
   caption = "Source : ADENOME-PROS"
-  x_axis = colnames(df)[feature_index]
+  x_axis = cfactolnames(df)[feature_index]
   g <- ggplot(df, aes(df[,feature_index]))
   g <- g + geom_bar(width = 0.5)
   g <- g + labs(title=title, 
          subtitle=x_axis,
          caption=caption,
-         x=x_axis,
-         y="")
+         x=factor(1),
+         y="",
+         fill=factor(x_axis))
+  g <- g + coord_polar("y", start=0)
   print(g)
 }
-```
+
+adenome_piechart <- function(df, feature_index, title){
+  bar <- ggplot(vapor, aes(x="", fill = factor(df[,feature_index]))) + geom_bar(width = 1)
+  pie <- bar + coord_polar(theta = "y")
+  print(pie)
+}
+``` 
 
 #
 # Cleanup & Data Preparation
@@ -69,13 +77,16 @@ adenome_barplot <- function(df, feature_index, title) {
 vapor<-read.csv(file = "datasets/VAPOR.csv", sep = ",")
 rtupb<-read.csv(file = "datasets/RTUPB-VBPPS.csv", sep = ",")
 
-# On cree  une variable vapor_pre_cor pour creer une matrice de correlation ne comportant que des donnees numeriques
-vapor_cor=subset(vapor,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique,Residu_post_mictionnel,QoL,X1M_QoL,X3M_QoL,X6M_QoL,X9M_QoL,X12M_QoL,X15M_QoL,X18M_QoL))
-vapor_pre_cor=vapor_cor[1:9]
-vapor_post_cor=vapor_cor[10:23]
-rtupb_cor=subset(rtupb,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique,Residu_post_mictionnel,Volume_Reseque,QoL,X1M_QoL,X3M_QoL,X6M_QoL,X9M_QoL,X12M_QoL,X15M_QoL,X18M_QoL))
-rtupb_pre_cor=rtupb_cor[1:8]
-rtupb_post_cor=vapor_cor[9:22]
+# On cree un dataframe ne comportant que des données numériques (pour corrélation de)
+vapor_num = subset(vapor,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique,Residu_post_mictionnel,QoL,X1M_QoL,X3M_QoL,X6M_QoL,X9M_QoL,X12M_QoL,X15M_QoL,X18M_QoL))
+vapor_pre_num = vapor_num[1:9]
+vapor_post_num = vapor_num[10:23]
+rtupb_num = subset(rtupb,select=-c(Comorbidite,Porteur_Sonde,Indication,Anesthesie,Evenement,Transfusion,QoL,Caillotage,Reprise_Bloc,Technique,Residu_post_mictionnel,Volume_Reseque,QoL,X1M_QoL,X3M_QoL,X6M_QoL,X9M_QoL,X12M_QoL,X15M_QoL,X18M_QoL))
+rtupb_pre_num = rtupb_num[1:8]
+rtupb_post_num = vapor_num[9:22]
+
+
+
 
 ################################# VAPOR ###############################################
 # Cast des variables booléennes

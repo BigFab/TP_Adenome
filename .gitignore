@@ -5,3 +5,4 @@ TP_Adenome_files/
 *.html
 .Rhistory
 *.docx
+.ipynb_checkpoints/
