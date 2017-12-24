@@ -1,4 +1,5 @@
 *.xlsx
+*.tar
 datasets/
 TP_Adenome_files/
 *.pdf
