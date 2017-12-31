@@ -1,0 +1,26 @@
+\BOOKMARK [1][-]{section.1}{Consid\351rations}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Typage des donn\351es}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Donn\351es manquantes}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Individus dupliqu\351s ?}{subsection.1.2}% 4
+\BOOKMARK [1][-]{section.2}{Analyse descriptive}{}% 5
+\BOOKMARK [2][-]{subsection.2.1}{Analyse descriptive -Pr\351-op\351ratoire}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Distributions}{subsection.2.1}% 7
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Corr\351lations}{subsection.2.1}% 8
+\BOOKMARK [3][-]{subsubsection.2.1.3}{Analyse en composantes principales}{subsection.2.1}% 9
+\BOOKMARK [2][-]{subsection.2.2}{Analyse descriptive - Post-op\351ratoire}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Tendances de gu\351rison ?}{subsection.2.2}% 11
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Corr\351lations}{subsection.2.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Conclusion analyse exploratoire post-op\351ration}{subsection.2.2}% 13
+\BOOKMARK [1][-]{section.3}{Clustering des donn\351es RTUPB-VBPPS}{}% 14
+\BOOKMARK [2][-]{subsection.3.1}{Extraction des profils types de patients \340 partir des donn\351es pr\351-op\351ratoires}{section.3}% 15
+\BOOKMARK [3][-]{subsubsection.3.1.1}{CAH}{subsection.3.1}% 16
+\BOOKMARK [3][-]{subsubsection.3.1.2}{PAM}{subsection.3.1}% 17
+\BOOKMARK [3][-]{subsubsection.3.1.3}{Caract\351risation des patients m\351doids}{subsection.3.1}% 18
+\BOOKMARK [3][-]{subsubsection.3.1.4}{Visualisation des distributions du Q\137max \340 12 mois pour les diff\351rentes classes}{subsection.3.1}% 19
+\BOOKMARK [2][-]{subsection.3.2}{Extraction des profils types des patients \340 partir des donn\351es post-op\351ratoires\266}{section.3}% 20
+\BOOKMARK [3][-]{subsubsection.3.2.1}{CAH}{subsection.3.2}% 21
+\BOOKMARK [3][-]{subsubsection.3.2.2}{PAM}{subsection.3.2}% 22
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Caract\351risation des profils de gu\351rison m\351doids}{subsection.3.2}% 23
+\BOOKMARK [2][-]{subsection.3.3}{Classification supervis\351e}{section.3}% 24
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Arbres de r\351gression}{subsection.3.3}% 25
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Pr\351diction de la classe de gu\351rison}{subsection.3.3}% 26

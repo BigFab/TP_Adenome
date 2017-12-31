@@ -1,0 +1,131 @@
+\contentsline {section}{\numberline {1}Consid\IeC {\'e}rations}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Typage des donn\IeC {\'e}es}{3}{subsection.1.1}
+\contentsline {paragraph}{}{3}{section*.2}
+\contentsline {paragraph}{}{3}{section*.3}
+\contentsline {subsection}{\numberline {1.2}Donn\IeC {\'e}es manquantes}{3}{subsection.1.2}
+\contentsline {paragraph}{}{3}{section*.4}
+\contentsline {paragraph}{}{3}{section*.5}
+\contentsline {paragraph}{}{3}{section*.6}
+\contentsline {paragraph}{}{3}{section*.7}
+\contentsline {paragraph}{}{4}{section*.8}
+\contentsline {subsubsection}{\numberline {1.2.1}Individus dupliqu\IeC {\'e}s ?}{4}{subsubsection.1.2.1}
+\contentsline {paragraph}{}{4}{section*.9}
+\contentsline {paragraph}{}{4}{section*.10}
+\contentsline {paragraph}{}{4}{section*.11}
+\contentsline {paragraph}{}{4}{section*.12}
+\contentsline {paragraph}{}{4}{section*.13}
+\contentsline {paragraph}{}{4}{section*.14}
+\contentsline {section}{\numberline {2}Analyse descriptive}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Analyse descriptive -Pr\IeC {\'e}-op\IeC {\'e}ratoire}{4}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Distributions}{4}{subsubsection.2.1.1}
+\contentsline {paragraph}{a. Sous-populations}{4}{section*.15}
+\contentsline {paragraph}{}{4}{section*.16}
+\contentsline {paragraph}{b. Par variables et par Technique}{5}{section*.17}
+\contentsline {paragraph}{}{5}{section*.18}
+\contentsline {paragraph}{}{8}{section*.19}
+\contentsline {paragraph}{c. Porteurs de sonde ou non}{8}{section*.20}
+\contentsline {paragraph}{}{8}{section*.21}
+\contentsline {subsubsection}{\numberline {2.1.2}Corr\IeC {\'e}lations}{10}{subsubsection.2.1.2}
+\contentsline {paragraph}{a. Toute technique}{10}{section*.22}
+\contentsline {paragraph}{}{10}{section*.23}
+\contentsline {paragraph}{}{11}{section*.24}
+\contentsline {paragraph}{b. Technique RTUPB}{11}{section*.25}
+\contentsline {paragraph}{}{12}{section*.26}
+\contentsline {paragraph}{}{12}{section*.27}
+\contentsline {paragraph}{c. Technique VBPPS}{12}{section*.28}
+\contentsline {paragraph}{}{13}{section*.29}
+\contentsline {subsubsection}{\numberline {2.1.3}Analyse en composantes principales}{13}{subsubsection.2.1.3}
+\contentsline {paragraph}{}{13}{section*.30}
+\contentsline {paragraph}{}{14}{section*.31}
+\contentsline {paragraph}{}{14}{section*.32}
+\contentsline {subsection}{\numberline {2.2}Analyse descriptive - Post-op\IeC {\'e}ratoire}{14}{subsection.2.2}
+\contentsline {paragraph}{}{14}{section*.33}
+\contentsline {paragraph}{}{15}{section*.34}
+\contentsline {paragraph}{}{15}{section*.35}
+\contentsline {paragraph}{}{15}{section*.36}
+\contentsline {subsubsection}{\numberline {2.2.1}Tendances de gu\IeC {\'e}rison ?}{15}{subsubsection.2.2.1}
+\contentsline {paragraph}{a. QMax}{15}{section*.37}
+\contentsline {paragraph}{}{15}{section*.38}
+\contentsline {paragraph}{}{15}{section*.39}
+\contentsline {paragraph}{}{15}{section*.40}
+\contentsline {paragraph}{}{15}{section*.41}
+\contentsline {paragraph}{}{16}{section*.42}
+\contentsline {paragraph}{b. IPSS}{16}{section*.43}
+\contentsline {paragraph}{}{16}{section*.44}
+\contentsline {paragraph}{}{16}{section*.45}
+\contentsline {paragraph}{}{16}{section*.46}
+\contentsline {paragraph}{}{16}{section*.47}
+\contentsline {paragraph}{}{17}{section*.48}
+\contentsline {paragraph}{}{17}{section*.49}
+\contentsline {paragraph}{c. QoL}{17}{section*.50}
+\contentsline {paragraph}{}{17}{section*.51}
+\contentsline {paragraph}{}{17}{section*.52}
+\contentsline {paragraph}{}{17}{section*.53}
+\contentsline {paragraph}{}{18}{section*.54}
+\contentsline {subsubsection}{\numberline {2.2.2}Corr\IeC {\'e}lations}{18}{subsubsection.2.2.2}
+\contentsline {paragraph}{}{18}{section*.55}
+\contentsline {paragraph}{}{18}{section*.56}
+\contentsline {paragraph}{}{19}{section*.57}
+\contentsline {paragraph}{}{19}{section*.58}
+\contentsline {subsubsection}{\numberline {2.2.3}Conclusion analyse exploratoire post-op\IeC {\'e}ration}{19}{subsubsection.2.2.3}
+\contentsline {section}{\numberline {3}Clustering des donn\IeC {\'e}es RTUPB-VBPPS}{19}{section.3}
+\contentsline {subsection}{\numberline {3.1}Extraction des profils types de patients \IeC {\`a} partir des donn\IeC {\'e}es pr\IeC {\'e}-op\IeC {\'e}ratoires}{19}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}CAH}{19}{subsubsection.3.1.1}
+\contentsline {paragraph}{}{19}{section*.59}
+\contentsline {paragraph}{}{19}{section*.60}
+\contentsline {paragraph}{}{19}{section*.61}
+\contentsline {paragraph}{}{20}{section*.62}
+\contentsline {subsubsection}{\numberline {3.1.2}PAM}{20}{subsubsection.3.1.2}
+\contentsline {paragraph}{}{20}{section*.63}
+\contentsline {paragraph}{}{20}{section*.64}
+\contentsline {paragraph}{}{21}{section*.65}
+\contentsline {paragraph}{}{21}{section*.66}
+\contentsline {paragraph}{}{21}{section*.67}
+\contentsline {paragraph}{}{21}{section*.68}
+\contentsline {paragraph}{}{21}{section*.69}
+\contentsline {paragraph}{}{21}{section*.70}
+\contentsline {subsubsection}{\numberline {3.1.3}Caract\IeC {\'e}risation des patients m\IeC {\'e}doids}{21}{subsubsection.3.1.3}
+\contentsline {paragraph}{}{21}{section*.71}
+\contentsline {paragraph}{}{22}{section*.72}
+\contentsline {paragraph}{a. Repr\IeC {\'e}sentant profil 1 (individu no 14)}{22}{section*.73}
+\contentsline {paragraph}{b. Repr\IeC {\'e}sentant profil 2 (individu no 55)}{22}{section*.74}
+\contentsline {paragraph}{c. Repr\IeC {\'e}sentant profil 3 (individu no 10)}{22}{section*.75}
+\contentsline {paragraph}{d. Tout repr\IeC {\'e}sentant}{22}{section*.76}
+\contentsline {subsubsection}{\numberline {3.1.4}Visualisation des distributions du Q\_max \IeC {\`a} 12 mois pour les diff\IeC {\'e}rentes classes}{23}{subsubsection.3.1.4}
+\contentsline {paragraph}{}{23}{section*.77}
+\contentsline {paragraph}{}{23}{section*.78}
+\contentsline {paragraph}{}{23}{section*.79}
+\contentsline {paragraph}{}{24}{section*.80}
+\contentsline {subsection}{\numberline {3.2}Extraction des profils types des patients \IeC {\`a} partir des donn\IeC {\'e}es post-op\IeC {\'e}ratoires\IeC {\P }}{24}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}CAH}{24}{subsubsection.3.2.1}
+\contentsline {paragraph}{}{24}{section*.81}
+\contentsline {paragraph}{}{24}{section*.82}
+\contentsline {paragraph}{}{24}{section*.83}
+\contentsline {subsubsection}{\numberline {3.2.2}PAM}{25}{subsubsection.3.2.2}
+\contentsline {paragraph}{}{25}{section*.84}
+\contentsline {paragraph}{}{25}{section*.85}
+\contentsline {paragraph}{}{25}{section*.86}
+\contentsline {subsubsection}{\numberline {3.2.3}Caract\IeC {\'e}risation des profils de gu\IeC {\'e}rison m\IeC {\'e}doids}{26}{subsubsection.3.2.3}
+\contentsline {paragraph}{}{26}{section*.87}
+\contentsline {paragraph}{}{26}{section*.88}
+\contentsline {paragraph}{}{26}{section*.89}
+\contentsline {paragraph}{a. Repr\IeC {\'e}sentant profil 1 (individu no 9)}{26}{section*.90}
+\contentsline {paragraph}{b. Repr\IeC {\'e}sentant profil 2 (individu no 49)}{26}{section*.91}
+\contentsline {paragraph}{c. Repr\IeC {\'e}sentant profil 3 (individu no 42)}{27}{section*.92}
+\contentsline {subsection}{\numberline {3.3}Classification supervis\IeC {\'e}e}{27}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Arbres de r\IeC {\'e}gression}{27}{subsubsection.3.3.1}
+\contentsline {paragraph}{}{27}{section*.93}
+\contentsline {paragraph}{a. IPSS}{27}{section*.94}
+\contentsline {paragraph}{}{27}{section*.95}
+\contentsline {paragraph}{}{27}{section*.96}
+\contentsline {paragraph}{}{28}{section*.97}
+\contentsline {paragraph}{b. QMax}{28}{section*.98}
+\contentsline {paragraph}{}{28}{section*.99}
+\contentsline {paragraph}{}{28}{section*.100}
+\contentsline {paragraph}{c. QoL}{28}{section*.101}
+\contentsline {paragraph}{}{29}{section*.102}
+\contentsline {paragraph}{}{29}{section*.103}
+\contentsline {subsubsection}{\numberline {3.3.2}Pr\IeC {\'e}diction de la classe de gu\IeC {\'e}rison}{29}{subsubsection.3.3.2}
+\contentsline {paragraph}{}{29}{section*.104}
+\contentsline {paragraph}{}{29}{section*.105}
+\contentsline {paragraph}{}{30}{section*.106}

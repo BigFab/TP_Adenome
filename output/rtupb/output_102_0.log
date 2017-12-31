@@ -1,0 +1,43 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.12.31)  31 DEC 2017 20:12
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**output_102_0.png output_105_0.png output_108_1.png output_110_1.png output_12
+1_0.png output_126_0.png output_130_0.png output_135_0.png output_16_0.png outp
+ut_17_0.png output_19_0.png output_19_10.png output_19_11.png output_19_12.png 
+output_19_1.png output_19_2.png output_19_3.png output_19_4.png output_19_5.png
+ output_19_6.png output_19_7.png output_19_8.png output_19_9.png output_22_0.pn
+g output_22_1.png output_22_2.png output_26_0.png output_28_0.png output_30_0.p
+ng output_30_1.png output_32_0.png output_34_0.png output_36_0.png output_42_1.
+png output_43_2.png output_43_3.png output_50_0.png output_52_0.png output_56_0
+.png output_59_0.png output_63_0.png output_65_0.png output_68_0.png output_77_
+0.png output_81_0.png output_87_0.png output_97_0.png output_97_1.png output_97
+_2.png
+(./output_102_0.png
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ‰
+     PNG
+? X
+ 
+Here is how much of TeX's memory you used:
+ 7 strings out of 493304
+ 290 string characters out of 6139870
+ 51880 words of memory out of 5000000
+ 3564 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 5i,0n,4p,803b,14s stack positions out of 5000i,500n,10000p,200000b,80000s
+No pages of output.
+PDF statistics:
+ 0 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

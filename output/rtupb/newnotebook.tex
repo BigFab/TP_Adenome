@@ -1,0 +1,1467 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    \usepackage{subfig}
+    
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{newnotebook}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+	
+	    \title{Adénome de la prostate - Etude des techniques RTUPB et VBPPS}
+	    \author{Zineb Bennis \& Fabrice Sougey}
+	    \date{ Décembre 2017 }    
+		\renewcommand{\contentsname}{Table des matières}
+		
+    \begin{document}
+    
+    
+    \maketitle
+    \thispagestyle{empty}
+    
+    \newpage
+    \tableofcontents
+    
+    \newpage
+    
+
+    
+    \section{Considérations}\label{considuxe9rations}
+
+    \subsection{Typage des données}\label{typage-des-donnuxe9es}
+
+\paragraph{}
+Pour le typage des données, nous avons fait le choix de garder les
+variables numériques par défaut sauf pour certaines variables que nous
+avons voulu traiter en tant que Variable Qualitative (= "factor") :
+\begin{itemize}
+\tightlist
+\item Comorbidite\item Porteur sonde\item Caillotage\item Transfusion\item Reprise bloc
+\item Anesthésie\item Indication\item Evénement\item Technique\medbreak
+\end{itemize}
+
+\paragraph{}
+Les variables "QoL" peuvent être considérées comme des variables
+ordinales car la "Qualité de vie" est 1 score donné par le patient de 1
+à 7. Plus il est élevé, plus le patient est insatisfait. Toutefois nous
+avons choisi de le traiter en tant que variable quantitative car nous
+allons établir des prédictions pour ce score dans la partie clustering.
+Il en va de même pour la variable IPSS. Pour celle-ci la valeur
+numérique a encore plus de sens car elle est une addition de différents
+scores concernant le patient.
+
+    \subsection{Données manquantes}\label{donnuxe9es-manquantes}
+
+\paragraph{}
+    Les individus porteur de sonde ne sont pas concernés par la variable
+'Résidu post mictionnel'. En effet, les porteurs de sonde n'urinent pas
+par voie naturelle, la sonde faisant le travail mécanique de vider la
+vessie. Ils n'ont donc pas de valeurs pour cette feature dans le jeu de
+données originel. Ici, plusieurs scénarios sont possibles. On pourrait,
+par exemple, enlever la variable 'Résidu post mictionnel' ou alors baser
+notre analyse uniquement sur les patients qui ne sont pas porteurs de
+sonde.
+
+\paragraph{}
+Le jeu de données n'étant pas très important, nous faisons le choix de
+ne pas enlever d'individus. Nous enlèverons donc la variable 'Résidu
+Post mictionnel' ainsi que la variable 'Qmax' qui n'est pas relevée pour
+les individus porteurs de sonde.
+
+\paragraph{}
+De plus le volume réséqué n'est disponible que pour la technique
+opératoire RTUPB. En effet, cette opération consiste en la résurection
+transurétrale de la prostate alors que la technique VBPPS n'enlève pas
+de tissu prostatique. Nous pensons que cette donnée va fausser l'analyse
+et ne sera pas pertinente dans la discrimination des techniques
+opératoires. Nous faisons le choix de la supprimer également.
+
+\paragraph{}
+Enfin, nous avons noté que certaines variables sont constantes à tout le
+tableau : 'Evenement', 'Transfusion' et 'Reprise Bloc'. Nous faisons le
+choix de les supprimer malgré que cela pourrait poser un problème dans
+l'éventualité où des nouveaux patients seraient intégrés à l'étude avec
+des valeurs différentes de celles aujourd'hui observées.
+
+\paragraph{}
+Résumé : Jeu de données complet - moins Résidu post mictionnel - moins
+Volume Réséqué - moins Qmax - moins Evenement - moins Transfusion -
+moins Reprise Bloc
+
+    \subsubsection{Individus dupliqués ?}\label{individus-dupliquuxe9s}
+
+\paragraph{}
+Nous notons que certains individus sont étrangement proches, avec 1
+valeur différente sur 1 seule variable ou parfois toutes les variables
+avec les mêmes valeurs.
+
+\paragraph{}
+    Par exemple, les 3 individus ci-dessous ont les mêmes valeurs pour
+toutes les variables.
+
+\paragraph{}
+
+\scalebox{0.8}{
+    \begin{tabular}{r|llllllll}
+  & Age & Comorbidite & Duree\_Traitement\_Medical & Porteur\_Sonde & IPSS & ... & M18\_QoL & M18\_Qmax\\
+\hline
+	17 & 84   & 0    & 11   & 1    & 35   & ⋯    & 2    & 17.9\\
+	30 & 84   & 0    & 11   & 1    & 35   & ⋯    & 2    & 17.9\\
+	36 & 84   & 0    & 11   & 1    & 35   & ⋯    & 2    & 17.9\\
+\end{tabular}
+}
+
+\paragraph{}
+    
+    Autre exemple, les individus ci-dessous ont les mêmes valeurs pour
+toutes les variables, sauf l'âge et le résidu post-mictionnel.
+
+\paragraph{}
+\scalebox{0.8}{
+    \begin{tabular}{r|llllllll}
+  & Age & Comorbidite & Duree\_Traitement\_Medical & Porteur\_Sonde & IPSS &  ⋯ & M18\_QoL & M18\_Qmax\\
+\hline
+	2 & 85   & 1    & 82   & 0    & 31   & ⋯ & 1    & 14.4\\
+	32 & 86   & 1    & 82   & 0    & 31  & ⋯ & 1    & 14.4\\
+\end{tabular}
+}
+
+\paragraph{}
+    
+    Dans une situation réelle nous aurions demandé au client de faire la
+lumière sur ce jeu de données et de vérifier qu'il n'y a pas d'erreur.
+Ces individus ont également des valeurs éloignées de la moyenne sur
+certaines features. Ils vont probablement compromettre le clustering
+mais nous faisons le choix de les garder quand même car rien ne nous
+indique à ce niveau que ce sont des erreurs.
+
+    \section{Analyse descriptive}\label{analyse-descriptive}
+
+    \subsection{Analyse descriptive -Pré-opératoire}\label{analyse-descriptive---pruxe9-opuxe9ratoire}
+
+    \subsubsection{Distributions}\label{distributions}
+
+    \paragraph{a. Sous-populations}\label{a.-sous-populations}
+\paragraph{}
+Pour commencer, il nous a paru important de comprendre le découpage de
+la population sur certains axes : "Technique" et "Porteur de sonde".
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_16_0.png}
+    
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_17_0.png}
+    \end{center}
+
+    \paragraph{b. Par variables et par Technique}\label{b.-par-variables-et-par-technique}
+\paragraph{}
+Pour chaque variable, nous avons fait le choix de visualiser les
+distributions globalement et aussi dans les sous-populations des
+techniques "RTUPB" et "VBPPS".
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_0.png}
+    \end{center}
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_1.png}
+    \end{center}
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_2.png}
+    \end{center}
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_3.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_4.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_5.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_6.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_7.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_8.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_9.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_10.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_11.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_12.png}
+    \end{center}
+    
+\paragraph{}
+    La durée de traitement médical est plus longue pour les patients qui ont
+reçu la technique VBPPS. Le temps d'opération est plus long pour les
+patients qui ont reçu la technique VBPPS. Il est fort probable que cette
+technique demande effectivement plus de temps pour être exécutée. Le
+délai d'ablation est moins long pour les patients VBPPS. Aucun cas de
+caillotage n'est relevé pour les patients qui ont reçu le traitement
+VBPPS.
+
+    \paragraph{c. Porteurs de sonde ou non}\label{c.-porteurs-de-sonde-ou-non}
+
+\paragraph{}
+Il nous paraissait intéressant de montrer quelques chiffres en fonction
+des porteurs de sonde. En effet cette variable nous semble importante
+pour différencier 2 patients.
+
+\begin{itemize}
+\tightlist
+\item Les porteurs de sonde sont plutôt les patients les plus âgés de notre
+population.
+\item 
+Il n'y a pas 1 choix de technique qui dépende du fait que le patient
+porte 1 sonde ou non.
+\item 
+Par contre, les porteurs de sonde ont l'IPSS maximum et ont aussi tous
+donné le même score presque maximal de "qualité de vie" (6 sur 1 échelle
+de 1 à 7) montrant la gêne que doit procurer la sonde.
+\item 
+Tous les patients équipés d'une sonde ont une valeur pour indication
+égale à 'Rétention vésicale aigue'. Ces patients sont donc dans
+l'incapacité d'uriner ce qui doit être une cause importante de
+déclenchement de l'opération.
+\end{itemize}
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_22_0.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_22_1.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_22_2.png}
+    \end{center}
+    
+    
+
+
+    
+    \begin{verbatim}
+     Technique
+Sonde  1  2
+    0 22 20
+    1 14 12
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+     Indication
+Sonde  1  2  3  5  6
+    0  0 24  6  8  4
+    1 26  0  0  0  0
+    \end{verbatim}
+
+    
+    \subsubsection{Corrélations}\label{corruxe9lations}
+
+    \paragraph{a. Toute technique}\label{a.-toute-technique}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_26_0.png}
+    \end{center}
+    
+\paragraph{}
+Nous notons une corrélation positive entre IPSS et QoL. Ainsi qu'entre
+la variable "Age" et les variables "QoL" et "IPSS". Plus le patient est
+âgé, plus le nombre de symptômes est important et plus son ressenti sur
+sa qualité de vie est mauvais.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_28_0.png}
+    \end{center}
+    
+    
+\paragraph{}
+Nous notons aussi une faible corrélation négative entre la "Durée du
+traitement médical" et les variables "Délai Ablation" et "Volume
+prostatique". Plus le traitement est long moins le délai d'ablation est
+important. Et moins la prostate est volumineuse. Cela pourrait vouloir
+dire que le traitement pré-opératoire agit sur la taille de la prostate
+avec une tendance à la faire diminuer.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_30_0.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_30_1.png}
+    \end{center}
+    
+    
+    \paragraph{b. Technique RTUPB}\label{b.-technique-rtupb}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_32_0.png}
+    \end{center}
+    
+    
+\paragraph{}
+En réduisant à la sous-population RTUPB, nous constatons les mêmes
+corrélations que pour la population globale. Ces corrélations positives
+sont légèrement plus fortes. Plus le patient est âgé, plus les symptômes
+sont importants et plus le ressenti de qualité de vie est médiocre.
+\paragraph{}
+Aussi nous retrouvons une corrélation positive entre le Temps
+d'opération et le délai d'ablation. Peut-être que l'ablation fait partie
+de l'opération et que plus cette étape est longue plus l'opération
+complète est longue.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_34_0.png}
+    \end{center}
+    
+    
+    \paragraph{c. Technique VBPPS}\label{c.-technique-vbpps}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_36_0.png}
+    \end{center}
+    
+    
+\paragraph{}En réduisant à la sous-population VBPPS, nous étudions les mêmes
+corrélations et hypothèses que celles décrites ci-dessus.
+
+    \subsubsection{Analyse en composantes principales}\label{analyse-en-composantes-principales}
+
+
+
+    
+    \begin{verbatim}
+Importance of components:
+                          PC1     PC2      PC3     PC4     PC5     PC6     PC7
+Standard deviation     28.988 11.1160 10.24931 7.24312 5.31519 1.88519 1.55134
+Proportion of Variance  0.727  0.1069  0.09089 0.04539 0.02444 0.00307 0.00208
+Cumulative Proportion   0.727  0.8339  0.92481 0.97020 0.99464 0.99772 0.99980
+                          PC8
+Standard deviation     0.4825
+Proportion of Variance 0.0002
+Cumulative Proportion  1.0000
+    \end{verbatim}
+    
+\paragraph{}Ainsi les deux premières composantes à elles seules représentent 83\% de
+l'information.
+
+
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_42_1.png}
+    \end{center}
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_43_2.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_43_3.png}
+    \end{center}
+    
+    
+\paragraph{}
+En observant le graphe ci-dessus on peut déduire que la variable qui
+contribue le plus dans la PC1 est "Durée du traitement médical". Les
+variables qui contribuent le plus à la PC2 sont "Temps Opération" et, à
+l'opposé, "IPSS" et "Age".
+\paragraph{}
+On retrouve les corrélations positives entre les variables "IPSS", "Age"
+et "QoL".
+
+    \subsection{Analyse descriptive - Post-opératoire}\label{analyse-descriptive---post-opuxe9ratoire}
+\paragraph{}
+    Nous avons décidé de ne pas montrer les distributions des variables
+post-opératoires prises séparemment car nos essais de boxplots et
+barcharts ne nous ont pas permis de dégager de faits intéressants en
+post-opératoire.
+\paragraph{}
+Par contre, afin de voir si nous pouvons déjà dégager plusieurs profils
+de guérison parmi tous les patients, nous avons eu l'idée de prendre
+plusieurs individus au hasard parmi tout le jeu de données et de faire
+un graphique de l'évolution de chacune des variables 'QMax', 'IPSS' et
+'Qol' de ces individus en fonction du temps.
+\paragraph{}
+Nous avons également créé 2 faux individus qui vont représenter les
+techniques RTUPB et VBPPS séparemment. Chacun a une valeur pour chaque
+variable équivalente à la moyenne de cette variable pour leur
+sous-population respective (fonction de la technique). L'idée ici est de
+voir si la technique utilisée a 1 impact sur la durée de guérison.
+\paragraph{}
+Chaque individu est représenté par une courbe sur le même graphique. Un
+graphique par indice.
+
+    \subsubsection{Tendances de guérison ?}\label{tendances-de-guuxe9rison}
+
+    \paragraph{a. QMax}\label{a.-qmax}
+
+\paragraph{}
+    Le QMax est le débit maximal urinaire. Plus cette valeur est importante,
+plus la miction est de bonne qualité. Pour preuve de guérison, on
+s'attend donc à voir remonter cette valeur. Au contraire, une valeur qui
+stagne ou qui régresse est un signe négatif pour la guérison.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_50_0.png}
+    \end{center}
+    
+    
+\paragraph{}
+On remarque que la technique opératoire utilisée n'a pas d'incidence
+forte sur la guérison. Toutefois on peut noter que la technique VBPPS
+semble converger plus vite et en moyenne elle procure une légère
+meilleure miction à la fin des 18 mois.
+\paragraph{}
+La courbe moyenne VBPPS commence par 1 régression. Cela est dû à 4
+patients qui ont des valeurs de QMax au premier mois égales à presque 3
+fois la valeur moyenne de la population globale.
+\paragraph{}
+Quel que soit le patient, il apparaît que la variable atteint un niveau
+qui ne change plus au bout du 9ème mois.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_52_0.png}
+    \end{center}
+    
+    
+\paragraph{}Ci-dessus la distribution des QMax selon le temps pour les 2 techniques.
+On note une stabilisation au bout du 9ème mois.
+
+    \paragraph{b. IPSS}\label{b.-ipss}
+
+\paragraph{}L'IPSS est le "International Prostatic Symptome Score". C'est une
+représentation numérique de plusieurs scores en fonction des symptômes
+de l'adénome de la prostate.
+\paragraph{}
+Plus ce chiffre est elevé plus le patient est gené :
+\begin{itemize}
+\tightlist
+\item0 - 7 .......... Peu symptomatique
+\item8 - 19 ......... Modérément symptomatique
+\item20 - 35 ........ Symptomes sévères
+\end{itemize}
+
+\paragraph{}
+
+Pour la guérison, on s'attend à une diminution de ce score.
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_56_0.png}
+    \end{center}
+    
+    
+\paragraph{}
+L'IPSS semble diminuer plus rapidement pour la technique RTUPB jusqu'à
+atteindre un plancher plus bas que pour la technique VBPPS. L'indice est
+rapidement dans la zone "non symptomatique" (en dessous de 8 donc) quel
+que soit le patient ou la technique. Il est d'ailleurs très en deça de
+l'IPSS pré-opératoire, preuve que l'operation, quelle que soit la
+technique, élimine la plupart des symptômes. 
+
+\paragraph{}Ci-dessous les moyennes IPSS :
+
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Moyenne pré-opératoire - toute population / RTUPB / VBPPS : {\ldots} 27.39706 27.58333 27.1875 
+Moyenne post-opératoire 1er mois - toute population /RTUPB / VBPPS : .. 6.955882 6.916667 7 
+
+    \end{Verbatim}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_59_0.png}
+    \end{center}
+    
+    
+\paragraph{}
+Ci-dessus la distribution des IPSS selon le temps pour les 2 techniques.
+On note une stabilisation au bout du 9ème mois.
+
+    \paragraph{c. QoL}\label{c.-qol}
+
+\paragraph{}
+L'indice 'QoL' représente le score donné par le patient pour sa qualité
+de vie. Plus ce score est élevé plus le patient est insatisfait. Ce
+score va de 1 à 7.
+\paragraph{}
+Pour la guérison, on s'attend à voir ce score diminuer.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_63_0.png}
+    \end{center}
+    
+    
+\paragraph{}Pour le QoL, nous ne notons pas de différence significative entre les 2
+techniques. L'évolution est similaire avec une chute importante entre le
+1er et le 9ème mois où l'indice atteint un seuil plancher. En moyenne
+les patients RTUPB restent légèrement moins satisfaits que les patients
+VBPPS.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_65_0.png}
+    \end{center}
+    
+    
+\paragraph{}Ci-dessus la distribution des QoL selon le temps pour les 2 techniques.
+On note une stabilisation au bout du 9ème mois.
+
+    \subsubsection{Corrélations}\label{corruxe9lations}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_68_0.png}
+    \end{center}
+    
+    
+\paragraph{}Pour rappel, nous n'avions pas la variable "Qmax" en pré-opératoire.
+Nous n'avions donc pas pu analyser les corrélations avec les autres
+variables. Ici, en post-opératoire, nous pouvons étudier ces
+corrélations.
+\paragraph{}
+En pré-opératoire, nous avions noté des corrélations positives entre
+"IPSS" et "QoL" : plus le score IPSS est haut, plus le ressenti du
+patient en qualité de vie est médiocre. Sur ce principe et pour une
+meilleure visibilité, nous avons choisi de n'étudier les corrélations
+que pour les 2 variables "IPSS" et "Qmax".
+\paragraph{}
+Ces indices étant des scores liés par une notion de temps et censés
+évoluer dans le même sens en fonction du temps, les corrélations
+semblent évidentes entre les mêmes indices à différents moments. Plus le
+temps passe et plus les indices sont corrélés entre eux. C'est un signe
+de convergence et d'orientation dans le sens de la guérison.
+\paragraph{}
+Les variables Qmax sont corrélées négativement avec les variables "IPSS"
+et "QoL" : plus les symptômes vont diminuer et la vie du patient
+s'améliorer, plus la miction deviendra bonne. Une miction qui s'améliore
+est un signe évident de guérison du patient.
+
+    \subsubsection{Conclusion analyse exploratoire post-opération}\label{conclusion-analyse-exploratoire-post-opuxe9ration}
+
+    De cette analyse exploratoire post-opération, on peut en conclure
+plusieurs choses : 
+\begin{itemize}
+\tightlist
+\item l'opération est bénéfique pour le patient qui peut
+espérer fortement une guérison
+\item une grande partie des patients aura
+guerri après le 9ème mois
+\item il existe plusieurs profils qui auront une
+guérison plus ou moins rapide
+\item la technique opératoire ne semble pas
+avoir d'incidence significative sur la durée de guérison
+\end{itemize}
+
+    \section{Clustering des données
+RTUPB-VBPPS}\label{clustering-des-donnuxe9es-rtupb-vbpps}
+
+    \subsection{Extraction des profils types de patients à partir des
+données
+pré-opératoires}\label{extraction-des-profils-types-de-patients-uxe0-partir-des-donnuxe9es-pruxe9-opuxe9ratoires}
+
+    \subsubsection{CAH}\label{cah}
+
+\paragraph{}
+La Classification Ascendante Hiérarchique est une bonne première
+approche pour aider à la détermination du nombre de classes idéal.
+Notamment par le biais du dendrogramme qui permet de visualiser des
+intuitions.
+\paragraph{}
+Nous prenons bien soin de retirer la variable "Technique" de notre
+recherche de clustering car nous allons chercher à étudier cette
+variable plus tard dans l'analyse. Il ne serait pas correct de
+l'utiliser pour calculer les dissimilarités.
+\paragraph{}
+Le calcul de la matrice des dissimilarités se fera à l'aide de la
+fonction R 'Daisy' et de la distance de Gower. Cette distance permet de
+calculer des similarités et dissimilarités sur des matrices hétérogènes
+comme c'est le cas dans notre jeu de données. En effet, nous avons des
+variables quantitatives et des variables qualitatives.
+
+
+
+    
+    \begin{verbatim}
+2278 dissimilarities, summarized :
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.2784  0.3832  0.3716  0.4639  0.7351 
+Metric :  mixed ;  Types = I, N, I, N, I, I, I, I, N, N, I, I, N 
+Number of objects : 68
+    \end{verbatim}
+
+    
+
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_77_0.png}
+    \end{center}
+    
+    
+\paragraph{}
+En regardant le dendrogramme, nous pouvons évaluer un nombre de classes
+de 3 ou 4.
+
+    \subsubsection{PAM}\label{pam}
+
+\paragraph{}
+Effectuons maintenant le test de silhouette avec l'algorithme PAM
+(Partitioning Around Medoids) pour confirmer ou infirmer notre intuition
+déduite de la CAH.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_81_0.png}
+    \end{center}
+    
+\paragraph{}    
+L'analyse des silhouettes n'est pas concluante et ne vient pas confirmer
+notre intuition apportée avec l'aide du dendrogramme. En effet, il
+faudrait un nombre très important de classes pour avoir des valeurs
+silhouette proches de 1. Pour être au delà de 0.7, valeur communément
+admise comme silhouette moyenne acceptable, il faut avoir plus de 10
+classes. Par la suite, il sera très difficile d'interpréter un si grand
+nombre de classes.
+\paragraph{}
+La valeur silhouette n'est qu'une clé pour aider au choix du nombre de
+classes. En général, il n'est pas intéressant, voire contre-productif,
+d'avoir 1 nombre de clusters supérieur à 10\% de la population. Dans
+notre cas, cela signifie que nous ne devrions pas aller au-delà de 6
+classes.
+\paragraph{}
+Jusqu'à 6 classes, les valeurs silhouettes les plus importantes sont
+pour 2 et 3 classes. En recoupant avec l'intuition apportée par le
+dendrogramme, nous pensons que 3 classes est un bon choix.
+\paragraph{}
+De plus, pour 3 classes, nous avons une répartition plutôt homogène des
+individus.
+\paragraph{}
+
+
+    \begin{tabular}{lllll}
+ size & max\_diss & av\_diss & diameter & separation\\
+\hline
+	 24        & 0.3380102 & 0.1985036 & 0.4203080 & 0.2659938\\
+	 26        & 0.2702409 & 0.1395546 & 0.3941044 & 0.2741430\\
+	 18        & 0.3195286 & 0.2347373 & 0.5184103 & 0.2659938\\
+\end{tabular}
+
+\paragraph{}
+    
+    Nous faisons donc le choix de 3 profils de patients.
+\paragraph{}
+    Ci-dessous, une visualisation en 2D des 3 clusters selon les 2 premières
+composantes principales.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_87_0.png}
+    \end{center}
+    
+    
+    \subsubsection{Caractérisation des patients
+médoids}\label{caractuxe9risation-des-patients-muxe9doids}
+
+\paragraph{}
+Ci-dessous les 3 patients représentant les 3 classes.
+
+\paragraph{}
+
+\scalebox{0.5}{
+    \begin{tabular}{r|lllllllllllll}
+  & Age & Comorbidite & Duree\_Traitement\_Medical & Porteur\_Sonde & IPSS & QoL & PSA & Volume\_Prostatique & Indication & Anesthesie & Temps\_Operation & Delai\_Ablation & Caillotage\\
+\hline
+	14 & 64   & 0    & 13   & 0    & 29   & 5    & 0.18 & 56   & 2    & 1    & 35   & 2    & 0   \\
+	55 & 75   & 0    & 38   & 1    & 35   & 6    & 3.70 & 52   & 1    & 1    & 39   & 2    & 0   \\
+	10 & 68   & 0    & 13   & 0    & 20   & 4    & 7.84 & 45   & 2    & 2    & 34   & 2    & 0   \\
+\end{tabular}
+}
+
+    
+    \paragraph{a. Représentant profil 1 (individu no
+14)}\label{a.-repruxe9sentant-profil-1-individu-no-14}
+
+\begin{itemize}
+\tightlist
+\item
+Le premier représentant est un patient jeune (64 ans et donc sur le
+premier quartile de la distribution des âges). Il a eu une durée de
+traitement médical plutôt courte.
+\item
+Il n'était pas porteur de sonde et pourtant il a un score IPSS de 29 qui
+signale des sympômes sévères et un score de qualité de vie ressentie
+haut (5 sachant que 6 est le maximum observé).
+\item
+Il a très peu d'antigène prostatique dans le sang, montrant un signe
+positif dans la maladie bénigne de l'adénome de la prostate.
+\item
+Par contre, il a 1 volume prostatique plus haut que la moyenne (56 alors
+que la moyenne est de 53 environ). Il est opéré sous anesthésie
+loco-régionale, suite à l'échec du traitement médical (indication = 2).
+\end{itemize}
+
+    \paragraph{b. Représentant profil 2 (individu no
+55)}\label{b.-repruxe9sentant-profil-2-individu-no-55}
+
+\begin{itemize}
+\tightlist
+\item
+Le deuxième représentant est un patient plus vieux que le premier
+représentant, 75 ans, sans faire partie des patients les plus âgés. Il
+est légèrement au dessus de la moyenne qui se situe aux alentours des 71
+ans.
+\item
+Il a eu une durée de traitement au dessus de la moyenne (38 mois).
+\item
+Il est porteur de sonde et a donc 1 IPSS et 1 Qol les plus hauts
+observés.
+\item
+Il a 1 taux d'antigène prostatique dans le sang supérieur à la moyenne
+(3.7 pour 2,7) et un volume prostatique dans la moyenne.
+\item
+Il a été opéré sous anesthésie loco-régionale, suite à une rétention
+vésicale. Sa rétention est d'ailleurs la cause pour laquelle il porte
+une sonde.
+\end{itemize}
+
+    \paragraph{c. Représentant profil 3 (individu no
+10)}\label{c.-repruxe9sentant-profil-3-individu-no-10}
+
+\begin{itemize}
+\tightlist
+\item
+Le troisième représentant est un patient qui a 1 âge correspondant à la
+médiane des âges de la population globale. Il a eu une durée de
+traitement médical plutôt courte.
+\item
+Il ne porte pas de sonde et il a 1 score de qualité de vie relativement
+bas (4 est le plus petit indice donné en 'QoL' en pré-opératoire), donc
+un ressenti de qualité de vie moins pire que les autres patients.
+\item
+Il a 1 taux d'antigène prostatique dans le sang très élevé (la valeur la
+plus élevée des observations) et un volume prostatique sous la moyenne.
+Il a été opéré sous anesthésie générale, suite à l'échec de son
+traitement médical (indication = 2).
+\end{itemize}
+
+    \paragraph{d. Tout représentant}\label{d.-tout-repruxe9sentant}
+
+\begin{itemize}
+\tightlist
+\item
+  Représentant 1 : jeune / non porteur de sonde / sympômes importants /
+  volume prostatique élevé
+\item
+  Représentant 2 : âge moyen / porteur de sonde / sympômes importants
+\item
+  Représentant 3 : âge moyen / non porteur de sonde / PSA élevé
+\end{itemize}
+
+Aucun des représentants ne présente de comorbidité. Le temps d'opération
+pour chacun est assez proche de la moyenne (38) et loin des minima (13)
+et maxima (60).
+
+    \subsubsection{Visualisation des distributions du Q\_max à 12 mois
+pour les différentes
+classes}\label{visualisation-des-distributions-du-q_max-uxe0-12-mois-pour-les-diffuxe9rentes-classes}
+
+\paragraph{}
+Notre clustering a été calculé sans la variable 'Technique'. Cela
+signifie que les profils de patients ne tiennent pas compte de cette
+information. Si on ré-intègre cette variable et qu'on affiche leur
+distribution pour le QMax à 12 mois de chaque cluster, on pourra voir
+quelle est la technique la plus synonyme de succès selon ce cluster.
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_97_0.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_97_1.png}
+    \end{center}
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_97_2.png}
+    \end{center}
+    
+    
+\paragraph{}Un individu qui appartiendrait au cluster 3 aurait une miction de
+meilleure qualité à 12 mois si il a subi la technique RTUPB.
+Inversement, un individu qui appartiendrait au cluster 2 ou au cluster 1
+aurait une meilleure miction à 12 mois si il subi la technique
+opératoire VBPPS.
+\paragraph{}
+On peut déduire qu'un patient qui aurait les caractéristiques du profil
+\#3 (âge moyen / non porteur de sonde / PSA élevé) devrait être orienté
+vers la technique RTUPB.
+\paragraph{}
+Un patient qui aurait les caractéristiques du profil \#1 (jeune / non
+porteur de sonde / sympômes importants / volume prostatique élevé) ou
+\#2 (âge moyen / porteur de sonde / sympômes importants) devrait être
+orienté vers la technique opératoire RTUPB.
+
+    \subsection{Extraction des profils types des patients à partir des
+données
+post-opératoires¶}\label{extraction-des-profils-types-des-patients-uxe0-partir-des-donnuxe9es-post-opuxe9ratoires}
+
+\subsubsection{CAH}\label{cah}
+
+\paragraph{}A l'aide des séries temporelles crées pour la partie exploratoire, nous
+créons une matrice qui assemble ces séries temporelles.
+\paragraph{}
+On calcule ensuite une matrice de dissimilarités en utilisant la
+distance euclidienne.
+
+
+
+    
+    \begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00   12.77   23.13   32.55   46.56  126.02 
+    \end{verbatim}
+
+    
+
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_102_0.png}
+    \end{center}
+    
+    
+\paragraph{}En regardant le dendrogramme, nous pouvons évaluer un nombre de classes
+de 2 ou 3.
+
+    \subsubsection{PAM}\label{pam}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_105_0.png}
+    \end{center}
+    
+    
+\paragraph{}
+Les valeurs silhouette justifieraient plutôt de faire le choix de 2
+profils. Avec 3 profils, la valeur silhouette reste assez haute. Au
+delà, les valeurs sont mauvaises. L'intuition que nous avons eue avec le
+dendrogramme est vérifiée.
+\paragraph{}
+    Ci-dessous le graphique avec 2 classes.
+\paragraph{}
+
+
+    \begin{tabular}{lllll}
+ size & max\_diss & av\_diss & diameter & separation\\
+\hline
+	 60       & 44.29086 & 15.21593 & 68.52707 & 21.16955\\
+	  8       & 34.02999 & 18.07269 & 46.91716 & 21.16955\\
+\end{tabular}
+
+
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_108_1.png}
+    \end{center}
+    
+    
+    En prenant 2 clusters, il nous semble que l'on intègre au premier
+cluster quelques valeurs qui pourraient former leur propre groupe. Si on
+essaye avec 3 groupes, cette intuition est confirmée ci-dessous. Les
+individus isolés forment bien le troisième cluster.
+
+\bigbreak
+
+    \begin{tabular}{lllll}
+ size & max\_diss & av\_diss & diameter & separation\\
+\hline
+	 56        & 44.290857 & 13.218910 & 68.527075 & 21.16955 \\
+	  8        & 34.029987 & 18.072695 & 46.917161 & 21.16955 \\
+	  4        &  2.964793 &  1.783514 &  3.525621 & 37.46345 \\
+\end{tabular}
+
+\bigbreak
+    
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_110_1.png}
+    \end{center}
+    
+    
+    La distribution des groupes n'est pas homogène, avec 2 ou 3 groupes. En
+effet le premier groupe est très peuplé.
+\medbreak
+Nous faisons finalement le choix de partir avec 3 profils de guérison.
+
+    \subsubsection{Caractérisation des profils de guérison
+médoids}\label{caractuxe9risation-des-profils-de-guuxe9rison-muxe9doids}
+
+
+\paragraph{}
+    \begin{tabular}{r|lllllll}
+  & M1\_IPSS & M3\_IPSS & M6\_IPSS & M9\_IPSS & M12\_IPSS & M15\_IPSS & M18\_IPSS\\
+\hline
+	9 & 6 & 2 & 2 & 2 & 2 & 2 & 2\\
+	49 & 6 & 2 & 1 & 1 & 1 & 1 & 1\\
+	42 & 9 & 6 & 3 & 3 & 3 & 3 & 3\\
+\end{tabular}
+
+\paragraph{}
+    
+    \begin{tabular}{r|lllllll}
+  & M1\_QoL & M3\_QoL & M6\_QoL & M9\_QoL & M12\_QoL & M15\_QoL & M18\_QoL\\
+\hline
+	9 & 3 & 2 & 2 & 2 & 2 & 2 & 2\\
+	49 & 3 & 2 & 1 & 1 & 1 & 1 & 1\\
+	42 & 3 & 3 & 1 & 1 & 1 & 1 & 1\\
+\end{tabular}
+
+\paragraph{}
+    
+    \begin{tabular}{r|lllllll}
+  & M1\_Qmax & M3\_Qmax & M6\_Qmax & M9\_Qmax & M12\_Qmax & M15\_Qmax & M18\_Qmax\\
+\hline
+	9 & 12.4 & 15.7 & 14.9 & 15.1 & 15.1 & 16.0 & 16.0\\
+	49 & 38.4 & 28.9 & 39.6 & 40.1 & 39.4 & 39.2 & 39.0\\
+	42 & 50.0 & 35.0 & 12.0 & 12.3 & 12.4 & 12.8 & 12.9\\
+\end{tabular}
+
+
+    
+    \paragraph{a. Représentant profil 1 (individu no
+9)}\label{a.-repruxe9sentant-profil-1-individu-no-9}
+
+\begin{itemize}
+\tightlist
+\item
+Cet individu a 1 IPSS à 6 au premier mois, IPSS 'peu symptomatique'. Il
+se stabilise rapidement à 2 au bout du troisième mois.
+\item
+Son score de qualité de vie commence à 3 (équivalent aux autres profils)
+passe à 2 au bout du troisième mois pour ne plus bouger. Il reste plus
+haut que les scores des autres profils.
+\item
+Son Qmax est à 12.4 au premier mois et atteint 16 au 18eme mois après
+une chute au 6eme mois.
+\end{itemize}
+
+    \paragraph{b. Représentant profil 2 (individu no
+49)}\label{b.-repruxe9sentant-profil-2-individu-no-49}
+
+\begin{itemize}
+\tightlist
+\item
+Le second profil a un IPSS 'Peu symptomatique' de 6 au premier mois qui
+descend à 2 au troisième mois. Et se stabilise à 1 à partir du 6eme
+mois.
+\item
+Son score de qualité de vie commence à 3, descend à 2 au troisième mois.
+Et se stabilise à 1 au 6ème mois.
+\item
+Le Qmax est à 38.4 au premier mois. Il évolue peu au cours du temps. Il
+termine à 39 au 18ème mois.
+\end{itemize}
+
+    \paragraph{c. Représentant profil 3 (individu no
+42)}\label{c.-repruxe9sentant-profil-3-individu-no-42}
+
+
+\begin{itemize}
+\tightlist
+\item
+Il a 1 score IPSS au premier mois plus haut que les autres profils.
+Cette valeur place le profil dans la classe 'Modérément symptomatique'
+montrant qu'il reste encore des symptomes au premier mois après
+l'opération. L'indice atteint sa valeur plancher et stabilisée à 3 au
+bout du sixième mois. Son score IPSS reste le plus haut des 3 profils.
+\item
+L'indice QoL atteint sa valeur plancher 1 au sixième mois.
+\item
+Enfin, son Qmax commence plus haut que les autres profils, chute au 3eme
+et 6mois pour atteindre la valeur de 12. Valeur qui remonte doucement
+jusqu'à 12.9 pour le 18eme mois. La valeur finale de l'indice reste plus
+basse que les autres profils. Le patient aura une moins bonne miction
+après le 18ème mois.
+\end{itemize}
+
+    \subsection{Classification
+supervisée}\label{classification-supervisuxe9e}
+
+    \subsubsection{Arbres de
+régression}\label{arbres-de-ruxe9gression}
+
+\paragraph{}Tous nos arbres sont des arbres de régression car ils prédisent des
+variables quantitatives, y compris la variable "QoL" que nous avons
+choisi de traiter comme numérique malgré qu'elle soit réellement de type
+"ordinal".
+
+    \paragraph{a. IPSS}\label{a.-ipss}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_121_0.png}
+    \end{center}
+    
+\paragraph{}
+On retrouve les variables "Durée traitement médical" et "Temps
+opération" comme critères important de ségrégation. Ce sont 2 variables
+que nous avions noté d'importance dans la partie analyse exploratoire.
+\paragraph{}
+    Pour évaluer la performance de l'arbre, nous générons une prédiction
+pour 10 individus pris au hasard et nous les comparons avec les valeurs
+réelles observées. Ci-dessous les résultats :
+
+\paragraph{}
+
+    \begin{tabular}{r|ll}
+  & Prédiction & Observé\\
+\hline
+	65 & 13.000000 & 13       \\
+	33 &  1.000000 &  1       \\
+	59 &  0.000000 &  0       \\
+	60 &  3.333333 &  4       \\
+	39 & 13.000000 & 13       \\
+	26 &  2.000000 &  2       \\
+	10 &  2.000000 &  2       \\
+	58 &  3.333333 &  3       \\
+	19 &  1.000000 &  1       \\
+	4 &  2.000000 &  2       \\
+\end{tabular}
+    
+    \paragraph{b. QMax}\label{b.-qmax}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_126_0.png}
+    \end{center}
+    
+    
+\paragraph{}Pour évaluer la performance de l'arbre, nous générons une prédiction
+pour 10 individus pris au hasard et nous les comparons avec les valeurs
+réelles observées. Ci-dessous les résultats :
+
+\paragraph{}
+
+    \begin{tabular}{r|ll}
+  & Prédiction & Observé\\
+\hline
+	22 & 15.10000 & 15.1    \\
+	48 & 12.45000 & 12.6    \\
+	18 & 16.20000 & 15.9    \\
+	39 &  3.70000 &  3.4    \\
+	31 & 16.20000 & 16.1    \\
+	17 & 18.50000 & 18.1    \\
+	36 & 18.50000 & 18.1    \\
+	56 & 12.92500 & 13.2    \\
+	55 & 18.56667 & 18.8    \\
+	63 & 44.76667 & 40.7    \\
+\end{tabular}
+
+
+    
+    \paragraph{c. QoL}\label{c.-qol}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_130_0.png}
+    \end{center}
+    
+    
+\paragraph{}
+Pour évaluer la performance de l'arbre, nous générons une prédiction
+pour 10 individus pris au hasard et nous les comparons avec les valeurs
+réelles observées. Ci-dessous les résultats :
+
+\paragraph{}
+
+    \begin{tabular}{r|ll}
+  & Prédiction & Observé\\
+\hline
+	60 & 1.6666667 & 2        \\
+	63 & 0.7500000 & 0        \\
+	59 & 0.3333333 & 1        \\
+	44 & 1.0000000 & 1        \\
+	61 & 0.3333333 & 0        \\
+	33 & 1.0000000 & 1        \\
+	36 & 2.0000000 & 2        \\
+	21 & 1.0000000 & 1        \\
+	64 & 0.7500000 & 1        \\
+	2 & 1.0000000 & 1        \\
+\end{tabular}
+
+
+    
+    \subsubsection{Prédiction de la classe de
+guérison}\label{pruxe9diction-de-la-classe-de-guuxe9rison}
+
+\paragraph{}
+L'idée ici est de reprendre la classification de guérison trouvée en
+partie 3.2 et de créer un arbre de décision basé sur les variables
+pré-opératoire permettant de prédire cette classification. On parlera
+d'arbre de classification car la variable à prédire est une classe
+(variable qualitative donc).
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_135_0.png}
+    \end{center}
+    
+\paragraph{}    
+Pour évaluer la performance de l'arbre, nous générons une prédiction
+pour 10 individus pris au hasard et nous les comparons avec les valeurs
+réelles observées. Ci-dessous les résultats :
+
+\paragraph{}
+
+    \begin{tabular}{r|llll}
+  & Observé & Prédiction classe = 1 & Prédiction classe = 2 & Prédiction classe = 3\\
+\hline
+	44 & 1 & X & 0 & 0\\
+	68 & 3 & 0 & 0 & X\\
+	65 & 1 & X & 0 & 0\\
+	27 & 1 & X & 0 & 0\\
+	8 & 1 & X & 0 & 0\\
+	34 & 1 & X & 0 & 0\\
+	14 & 1 & X & 0 & 0\\
+	30 & 1 & X & 0 & 0\\
+	23 & 1 & X & 0 & 0\\
+	59 & 1 & X & 0 & 0\\
+\end{tabular}
+
+
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
